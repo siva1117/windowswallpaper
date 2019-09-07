@@ -3,11 +3,7 @@ const express = require('express');
 
 const app = express();
 
-app.get('/kim', (req, res) => {
-    response.send('KIM');
-});
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
+app.get('*', (req, res) => res.send('Hello World!'))
 
-exports.helloWorld = functions.https.onRequest(app);
+exports.app = functions.https.onRequest(app);
