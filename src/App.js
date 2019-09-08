@@ -1,7 +1,6 @@
 // Lib imports
 import React, { Component, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import M from 'materialize-css';
 import 'materialize-css/dist/css/materialize.min.css';
 
 
@@ -18,10 +17,6 @@ const Contact = lazy(()=> import('./pages/Contact'));
 const Upload = lazy(()=> import('./pages/Upload'));
 
 class App extends Component {
-    componentDidMount() {
-        M.AutoInit();
-    }
-
     render() {
         return (
             <div className="App">
