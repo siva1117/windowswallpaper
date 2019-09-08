@@ -1,0 +1,35 @@
+.media-grid {
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 1rem;
+}
+
+.media-grid .responsive-image {
+    max-width: 100%;
+}
+
+.media-grid .cell img {
+    display: block;
+}
+
+
+/*Mobile*/
+@media screen and (min-width: 600px) {
+    .media-grid .grid {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+    .media-grid .cell {
+        margin: 1rem;
+        width: calc(50% - 2rem);
+    }
+}
+
+/*Desktop*/
+@media screen and (min-width: 1000px) {
+    .media-grid .cell {
+        margin: 1rem;
+        width: calc(33.3333% - 2rem);
+    }
+}
