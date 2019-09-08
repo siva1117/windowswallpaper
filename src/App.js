@@ -7,7 +7,8 @@ import 'materialize-css/dist/css/materialize.min.css';
 
 // Custom imports
 import Spinner from './components/Spinner';
-import Header from './components/Header'
+import Header from './components/Header';
+import Footer from './components/Footer'
 import './App.css';
 
 // Lazy load pages
@@ -34,6 +35,7 @@ class App extends Component {
                             <Route exact path="/upload" component={Upload}/>
                         </Switch>
                     </Suspense>
+                    <Footer/>
                 </Router>
             </div>
 
