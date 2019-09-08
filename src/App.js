@@ -1,5 +1,6 @@
 // Lib imports
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import M from 'materialize-css';
 
 // Custom imports
@@ -13,9 +14,11 @@ class App extends Component {
 
     render() {
         return (
-            <div className="App">
-                <Home/>
-            </div>
+            <Router>
+                <div className="App">
+                    <Route exact path="/" component={Home}/>
+                </div>
+            </Router>
         );
     }
 }
