@@ -4,7 +4,7 @@ import Slider from '../components/Slider';
 function Home(props) {
     return (
         <div className="container">
-            <h1>Home</h1>
+            <h1>Top Wallpapers</h1>
             <Slider/>
         </div>
     );
