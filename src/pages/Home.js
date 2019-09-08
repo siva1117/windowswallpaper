@@ -1,7 +1,11 @@
 import React from 'react';
 
 function Home(props) {
-    return (<h1>Kim Wallpapers</h1>);
+    return (
+        <div className="container">
+            <h1>Home</h1>
+        </div>
+    );
 }
 
 export default Home;

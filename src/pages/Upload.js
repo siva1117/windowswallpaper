@@ -1,11 +1,11 @@
 import React from  'react';
 
-function Contact(props) {
+function Upload(props) {
     return (
         <div className="container">
-            <h1>Contact</h1>
+            <h1>Upload</h1>
         </div>
     );
 }
 
-export default Contact;
+export default Upload;
