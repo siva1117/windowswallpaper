@@ -18,7 +18,7 @@ class Home extends Component {
         //@todo  .env files to switch API's
         //@todo change Api's to expect limit
         //get top wallpapers
-        Axios.get('/api/v1/top')
+        Axios.get('http://localhost:5000/api/v1/top')
             .then(res => {
                 this.setState({
                     topWallpapers: res.data
@@ -27,7 +27,7 @@ class Home extends Component {
             .catch(err => console.log(err));
 
         //get latest wallpapers
-        Axios.get('/api/v1/latest')
+        Axios.get('http://localhost:5000/api/v1/latest')
             .then((res)=>{
                 this.setState({
                     latestWallpapers: res.data

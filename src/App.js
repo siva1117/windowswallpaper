@@ -15,6 +15,7 @@ const Home = lazy(()=> import('./pages/Home'));
 const About = lazy(()=> import('./pages/About'));
 const Contact = lazy(()=> import('./pages/Contact'));
 const Upload = lazy(()=> import('./pages/Upload'));
+const Wallpaper = lazy(()=> import('./pages/Wallpaper'));
 
 class App extends Component {
     render() {
@@ -28,6 +29,7 @@ class App extends Component {
                             <Route exact path="/about" component={About}/>
                             <Route exact path="/contact" component={Contact}/>
                             <Route exact path="/upload" component={Upload}/>
+                            <Route exact path="/wallpaper/:id" component={Wallpaper}/>
                         </Switch>
                     </Suspense>
                     <Footer/>
