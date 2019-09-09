@@ -3,41 +3,35 @@ import M from 'materialize-css';
 
 class Slider extends Component {
     componentDidMount() {
-        // @todo this should only init on promise resolve
+//        M.Slider.init(document.querySelectorAll('.slider'));
+
+    }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        //@todo poor solution below, shouldn't render twice handle with Promise
         M.Slider.init(document.querySelectorAll('.slider'));
     }
+
     render() {
+        const { media, show } = this.props;
+        const mediaList = media.length ? (
+            media.map(photo => {
+                return (
+                    <li key={photo.id}>
+                        <img src={photo.url} alt={photo.title}/>
+                        <div className="caption right-align">
+                            <h3>{photo.title}</h3>
+                            <h5 className="light grey-text text-darken-2">{photo.description}</h5>
+                        </div>
+                    </li>
+                );
+            }).slice(0, show)
+            ) : (
+            <div className="center">No media found</div>
+        );
         return (
             <div className="slider">
                 <ul className="slides">
-                    <li>
-                        <img src="https://placeimg.com/1920/1080/people" alt="Kim"/>
-                        <div className="caption center-align">
-                            <h3>This is our big Tagline!</h3>
-                            <h5 className="light grey-text text-darken-2">Here's our small slogan.</h5>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="https://placeimg.com/1920/1080/animals"  alt="Kim"/>
-                        <div className="caption left-align">
-                            <h3>Left Aligned Caption</h3>
-                            <h5 className="light grey-text text-darken-2">Here's our small slogan.</h5>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="https://placeimg.com/1920/1080/arch"  alt="Kim"/>
-                        <div className="caption right-align">
-                            <h3>Right Aligned Caption</h3>
-                            <h5 className="light grey-text text-darken-2">Here's our small slogan.</h5>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="https://placeimg.com/1920/1080/nature"  alt="Kim"/>
-                        <div className="caption center-align">
-                            <h3>This is our big Tagline!</h3>
-                            <h5 className="light grey-text text-darken-2">Here's our small slogan.</h5>
-                        </div>
-                    </li>
+                    {mediaList}
                 </ul>
             </div>
         );
