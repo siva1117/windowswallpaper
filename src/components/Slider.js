@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import M from 'materialize-css';
+import { Link } from 'react-router-dom';
 
 class Slider extends Component {
     componentDidMount() {
 //        M.Slider.init(document.querySelectorAll('.slider'));
-
     }
     componentDidUpdate(prevProps, prevState, snapshot) {
         //@todo poor solution below, shouldn't render twice handle with Promise
@@ -17,11 +17,13 @@ class Slider extends Component {
             media.map(photo => {
                 return (
                     <li key={photo.id}>
-                        <img src={photo.url} alt={photo.title}/>
-                        <div className="caption right-align">
-                            <h3>{photo.title}</h3>
-                            <h5 className="light grey-text text-darken-2">{photo.description}</h5>
-                        </div>
+                        <Link to={'/wallpaper/' + photo.id}>
+                            <img src={photo.url} alt={photo.title}/>
+                            <div className="caption right-align">
+                                <h3>{photo.title}</h3>
+                                <h5 className="light grey-text text-darken-2">{photo.description}</h5>
+                            </div>
+                        </Link>
                     </li>
                 );
             }).slice(0, show)
