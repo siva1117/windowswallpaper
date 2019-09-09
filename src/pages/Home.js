@@ -37,7 +37,6 @@ class Home extends Component {
     }
 
     render() {
-
         return (
             <div className="container">
                 <h2>Top Wallpapers {this.state.name} </h2>
