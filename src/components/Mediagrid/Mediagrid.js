@@ -1,27 +1,25 @@
-import React, { Component} from 'react';
+import React from 'react';
 import './mediagrid.css';
 
-class Mediagrid extends Component {
-    render() {
-        return (
-                <div className="media-grid">
-                    <div className="grid">
-                        <div className="cell"><img src="https://placeimg.com/1920/1080/animals" className="responsive-image"/></div>
-                        <div className="cell"><img src="https://placeimg.com/1920/1080/arch" className="responsive-image"/></div>
-                        <div className="cell"><img src="https://placeimg.com/1920/1080/nature" className="responsive-image"/></div>
-                        <div className="cell"><img src="https://placeimg.com/1920/1080/tech" className="responsive-image"/></div>
-                        <div className="cell"><img src="https://placeimg.com/1920/1080/greyscale" className="responsive-image"/></div>
-                        <div className="cell"><img src="https://placeimg.com/1920/1080/sepia" className="responsive-image"/></div>
-                        <div className="cell"><img src="https://placeimg.com/1920/1080/animals" className="responsive-image"/></div>
-                        <div className="cell"><img src="https://placeimg.com/1920/1080/arch" className="responsive-image"/></div>
-                        <div className="cell"><img src="https://placeimg.com/1920/1080/nature" className="responsive-image"/></div>
-                        <div className="cell"><img src="https://placeimg.com/1920/1080/tech" className="responsive-image"/></div>
-                        <div className="cell"><img src="https://placeimg.com/1920/1080/greyscale" className="responsive-image"/></div>
-                        <div className="cell"><img src="https://placeimg.com/1920/1080/sepia" className="responsive-image"/></div>
-                    </div>
-                </div>
-        );
-    }
-}
+function Mediagrid(props) {
 
+    const {mediaList, show} = props;
+    const mediaGrid = mediaList.length ? (
+        mediaList.map(media => {
+            return (
+                <div className="cell" key={media.id}>
+                    <img src={media.thumbnail} className="responsive-image" alt={media.title}  />
+                </div>
+            );
+        }).slice(0,show)
+    ) : (<div className="center">No Media found</div>);
+
+    return (
+        <div className="media-grid">
+            <div className="grid">
+                {mediaGrid}
+            </div>
+        </div>
+    );
+}
 export default Mediagrid;
