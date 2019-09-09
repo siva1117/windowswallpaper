@@ -4,9 +4,6 @@
     padding: 0 1rem;
 }
 
-.media-grid .responsive-image {
-    max-width: 100%;
-}
 
 .media-grid .cell img {
     display: block;

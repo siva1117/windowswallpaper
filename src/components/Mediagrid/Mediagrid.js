@@ -8,7 +8,7 @@ function Mediagrid(props) {
         mediaList.map(media => {
             return (
                 <div className="cell" key={media.id}>
-                    <img src={media.thumbnail} className="responsive-image" alt={media.title}  />
+                    <img src={media.thumbnail} className="responsive-img" alt={media.title}  />
                 </div>
             );
         }).slice(0,show)
