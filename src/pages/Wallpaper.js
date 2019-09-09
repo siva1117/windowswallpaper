@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Wallpaper extends Component {
 
     state = {
-        wallpaper : {}
+        wallpaperInfo : {}
     };
 
     componentDidMount() {
