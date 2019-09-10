@@ -25,7 +25,6 @@ class Wallpaper extends Component {
                 this.setState({
                     wallpaper: res.data[0]
                 });
-                console.log('Kim1', this.state.wallpaper)
             })
             .catch(err => console.log(err));
 
@@ -34,8 +33,6 @@ class Wallpaper extends Component {
                 this.setState({
                     comments: res.data
                 });
-                console.log('Kim2', this.state.comments)
-
             })
             .catch(err => console.log(err))
     }
