@@ -20,7 +20,7 @@ class Wallpaper extends Component {
             id: wallpaperId
         });
 
-        Axios.get(`http://localhost:5000/api/v1/wallpaper?id=${wallpaperId}`)
+        Axios.get(`/api/v1/wallpaper?id=${wallpaperId}`)
             .then(res => {
                 this.setState({
                     wallpaper: res.data[0]
@@ -28,7 +28,7 @@ class Wallpaper extends Component {
             })
             .catch(err => console.log(err));
 
-        Axios.get(`http://localhost:5000/api/v1/comments?id=${wallpaperId}`)
+        Axios.get(`/api/v1/comments?id=${wallpaperId}`)
             .then(res => {
                 this.setState({
                     comments: res.data
