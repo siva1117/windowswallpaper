@@ -1,60 +1,66 @@
+//Lib imports
 import React, { Component } from 'react';
+import Axios from 'axios';
+
+//Custom Imports
+import Comments from '../components/Comments'
 
 class Wallpaper extends Component {
 
     state = {
-        wallpaperInfo : {}
+        id: null,
+        wallpaper : {},
+        comments: []
     };
 
     componentDidMount() {
-        console.log('Kim ' ,this.state, this.props);
+        let wallpaperId = this.props.match.params.id;
+
+        this.setState({
+            id: wallpaperId
+        });
+
+        Axios.get(`http://localhost:5000/api/v1/wallpaper?id=${wallpaperId}`)
+            .then(res => {
+                this.setState({
+                    wallpaper: res.data[0]
+                });
+                console.log('Kim1', this.state.wallpaper)
+            })
+            .catch(err => console.log(err));
+
+        Axios.get(`http://localhost:5000/api/v1/comments?id=${wallpaperId}`)
+            .then(res => {
+                this.setState({
+                    comments: res.data
+                });
+                console.log('Kim2', this.state.comments)
+
+            })
+            .catch(err => console.log(err))
     }
 
     render() {
-        return (
-            <div className="container">
-                <h2>Kim de Rome </h2>
-                <div className="row">
-                    <div className="col s8">
-                        <img src="https://placeimg.com/1980/1080/any" alt="Kim" className="responsive-img" />
-                    </div>
-                    <div className="col s4">
-                        <p>Media grid from same category should be placed here</p>
-                    </div>
+        const wallpaper = this.state.wallpaper;
+        const comments = this.state.comments;
+
+        return wallpaper ? (
+                    <div className="container">
+                        <h2> {wallpaper.title} </h2>
+                        <div className="row">
+                            <div className="col s8">
+                                <img src={wallpaper.url} alt={wallpaper.title} className="responsive-img" />
+                            </div>
+                            <div className="col s4">
+                                <p>Todo Media grid from same category should be placed here</p>
+                            </div>
                 </div>
                 <h3>Comments</h3>
                 <div>Add Comment Component should come here </div>
-                <ul className="collection">
-                    <li className="collection-item avatar">
-                        <img src="https://placeimg.com/1980/1080/any" alt="" className="circle" />
-                        <span className="title">Title</span>
-                        <p>First Line <br/>
-                            Second Line
-                        </p>
-                    </li>
-                    <li className="collection-item avatar">
-                        <i className="material-icons circle">folder</i>
-                        <span className="title">Title</span>
-                        <p>First Line <br/>
-                            Second Line
-                        </p>
-                    </li>
-                    <li className="collection-item avatar">
-                        <i className="material-icons circle green">insert_chart</i>
-                        <span className="title">Title</span>
-                        <p>First Line <br/>
-                            Second Line
-                        </p>
-                    </li>
-                    <li className="collection-item avatar">
-                        <i className="material-icons circle red">play_arrow</i>
-                        <span className="title">Title</span>
-                        <p>First Line <br/>
-                            Second Line
-                        </p>
-                    </li>
-                </ul>
+                <Comments comments={comments}/>
             </div>
+        ) : (
+            <div className="center">No Info available</div>
         );
     }
 }
