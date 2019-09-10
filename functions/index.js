@@ -223,6 +223,17 @@ app.get('/api/v1/comments', (req, res) => {
     ));
 });
 
+// Filtered Comments
+app.get('/api/v1/wallpaper', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify(
+        wallpersMockData.filter(item => {
+            return item.id === Number(req.query.id);
+        })
+
+    ));
+});
+
 // Not Found
 //@todo Handle Exception properly
 app.get('*', (req, res) => res.send('Resource not found'));
