@@ -1,4 +1,8 @@
+//Lib imports
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+//Custom imports
 import './mediagrid.css';
 
 function Mediagrid(props) {
@@ -8,7 +12,7 @@ function Mediagrid(props) {
         mediaList.map(media => {
             return (
                 <div className="cell" key={media.id}>
-                    <img src={media.thumbnail} className="responsive-img" alt={media.title}  />
+                    <Link to={`/wallpaper/${media.id}`}><img src={media.thumbnail} className="responsive-img" alt={media.title}  /></Link>
                 </div>
             );
         }).slice(0,show)
