@@ -42,7 +42,7 @@ class Home extends Component {
                 <h2>Top Wallpapers {this.state.name} </h2>
                 <Slider media={this.state.topWallpapers} show={5}/>
                 <h2>Latest Wallpapers</h2>
-                <Mediagrid mediaList={this.state.latestWallpapers} show={9}/>
+                <Mediagrid mediaList={this.state.latestWallpapers} show={16}/>
             </div>
         );
     }
