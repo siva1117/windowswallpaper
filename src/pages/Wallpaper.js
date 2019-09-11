@@ -1,9 +1,10 @@
 //Lib imports
 import React, { Component } from 'react';
-import Axios from 'axios';
+import { connect } from 'react-redux';
 
 //Custom Imports
 import Comments from '../components/Comments'
+import { getWallpaperInfo } from '../redux/actions/wallpaperActions';
 
 class Wallpaper extends Component {
 
@@ -14,31 +15,11 @@ class Wallpaper extends Component {
     };
 
     componentDidMount() {
-        let wallpaperId = this.props.match.params.id;
-
-        this.setState({
-            id: wallpaperId
-        });
-
-        Axios.get(`${process.env.REACT_APP_HOST_NAME}/api/v1/wallpaper?id=${wallpaperId}`)
-            .then(res => {
-                this.setState({
-                    wallpaper: res.data[0]
-                });
-            })
-            .catch(err => console.log(err));
-
-        Axios.get(`${process.env.REACT_APP_HOST_NAME}/api/v1/comments?id=${wallpaperId}`)
-            .then(res => {
-                this.setState({
-                    comments: res.data
-                });
-            })
-            .catch(err => console.log(err))
+        this.props.getWallpaperInfo(this.props.match.params.id);
     }
 
     render() {
-        const wallpaper = this.state.wallpaper;
+        const { wallpaper } = this.props;
         const comments = this.state.comments;
 
         return wallpaper ? (
@@ -62,5 +43,16 @@ class Wallpaper extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        wallpaper: state.wallpapers.wallpaper
+    }
+};
 
-export default Wallpaper;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getWallpaperInfo: (id) => dispatch(getWallpaperInfo(id)),
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Wallpaper);

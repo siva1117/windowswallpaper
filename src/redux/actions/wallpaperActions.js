@@ -23,3 +23,13 @@ export  const getLatestWallpapers = () => {
             .catch(err => console.log(err));
     }
 };
+
+export const getWallpaperInfo = (id) => {
+    return (dispatch, getState) => {
+        Axios.get(`${process.env.REACT_APP_HOST_NAME}/api/v1/wallpaper?id=${id}`)
+            .then(res => {
+                dispatch({type: ActionTypes.GET_WALLPAPER_INFO, payload: res.data[0]});
+            })
+            .catch(err => console.log(err));
+    }
+};

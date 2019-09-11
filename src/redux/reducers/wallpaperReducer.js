@@ -3,7 +3,8 @@ import ActionTypes from '../actions/actionTypes'
 
 const initState = {
     top:[],
-    latest:[]
+    latest:[],
+    wallpaper: {}
 };
 
 const wallpaperReducer = (state = initState, action) => {
@@ -13,10 +14,15 @@ const wallpaperReducer = (state = initState, action) => {
                 ...state,
                 top: action.payload
             };
-        case ActionTypes.GET_LATEST_WALLPAPERS: // @todo craete ACTION_TYPES enums
+        case ActionTypes.GET_LATEST_WALLPAPERS:
             return {
                 ...state,
                 latest: action.payload
+            };
+        case ActionTypes.GET_WALLPAPER_INFO:
+            return {
+                ...state,
+                wallpaper: action.payload
             };
         default:
             return state;
