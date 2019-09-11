@@ -1,6 +1,7 @@
 //Lib imports
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Axios from 'axios';
 
 //Custom Imports
 import Comments from '../components/Comments'
@@ -16,6 +17,13 @@ class Wallpaper extends Component {
 
     componentDidMount() {
         this.props.getWallpaperInfo(this.props.match.params.id);
+        Axios.get(`${process.env.REACT_APP_HOST_NAME}/api/v1/comments?id=${this.props.match.params.id}`)
+            .then(res => {
+                this.setState({
+                    comments: res.data
+                });
+            })
+            .catch(err => console.log(err))
     }
 
     render() {

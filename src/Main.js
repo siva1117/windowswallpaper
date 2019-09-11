@@ -10,10 +10,10 @@ import App from './App';
 import rootReducer from './redux/reducers/rootReducer';
 
 
-let middleware = [thunk, logger];
+let middleware = [thunk];
 //@todo uncomment below before final deployment
 // if (process.env.NODE_ENV !== 'production') {
-//     middleware = [...middleware, logger]
+    middleware = [...middleware, logger]
 // }
 
 const store = createStore(rootReducer, compose(applyMiddleware(...middleware)));
