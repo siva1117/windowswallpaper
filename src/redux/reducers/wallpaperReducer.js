@@ -1,3 +1,6 @@
+//Custom imports
+import ActionTypes from '../actions/actionTypes'
+
 const initState = {
     top:[],
     latest:[]
@@ -5,12 +8,12 @@ const initState = {
 
 const wallpaperReducer = (state = initState, action) => {
     switch(action.type) {
-        case 'GET_TOP_WALLPAPERS': // @todo craete ACTION_TYPES enums
+        case ActionTypes.GET_TOP_WALLPAPERS:
             return {
                 ...state,
                 top: action.payload
             };
-        case 'GET_LATEST_WALLPAPERS': // @todo craete ACTION_TYPES enums
+        case ActionTypes.GET_LATEST_WALLPAPERS: // @todo craete ACTION_TYPES enums
             return {
                 ...state,
                 latest: action.payload

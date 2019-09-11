@@ -1,6 +1,5 @@
 //Lib
 import React, { Component } from 'react';
-import Axios from 'axios';
 import { connect } from 'react-redux';
 
 //Custom Imports
@@ -10,12 +9,6 @@ import { getTopWallpapers, getLatestWallpapers } from '../redux/actions/wallpape
 
 
 class Home extends Component {
-
-    //@todo Implement Redux and handle with actiosn
-    state = {
-        topWallpapers : [],
-        latestWallpapers : []
-    };
 
     componentDidMount() {
         this.props.getTopWallpapers();
