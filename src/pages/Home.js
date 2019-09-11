@@ -1,10 +1,13 @@
 //Lib
 import React, { Component } from 'react';
 import Axios from 'axios';
+import { connect } from 'react-redux';
 
 //Custom Imports
 import Slider from '../components/Slider';
 import Mediagrid from '../components/Mediagrid/Mediagrid'
+import { getTopWallpapers, getLatestWallpapers } from '../redux/actions/wallpaperActions';
+
 
 class Home extends Component {
 
@@ -15,36 +18,36 @@ class Home extends Component {
     };
 
     componentDidMount() {
-        //@todo change Api's to expect limit
-        //get top wallpapers
-        Axios.get(`${process.env.REACT_APP_HOST_NAME}/api/v1/top`)
-            .then(res => {
-                this.setState({
-                    topWallpapers: res.data
-                });
-            })
-            .catch(err => console.log(err));
-
-        //get latest wallpapers
-        Axios.get(`${process.env.REACT_APP_HOST_NAME}/api/v1/latest`)
-            .then((res)=>{
-                this.setState({
-                    latestWallpapers: res.data
-                });
-            })
-            .catch(err => console.log(err));
+        this.props.getTopWallpapers();
+        this.props.getLatestWallpapers();
     }
 
     render() {
+        // @todo move this to new components to avoid multiple rendering of whole page
+        const { topWallpapers, latestWallpapers } = this.props;
         return (
             <div className="container">
-                <h2>Top Wallpapers {this.state.name} </h2>
-                <Slider media={this.state.topWallpapers} show={5}/>
+                <h2>Top Wallpapers </h2>
+                <Slider media={topWallpapers} show={5}/>
                 <h2>Latest Wallpapers</h2>
-                <Mediagrid mediaList={this.state.latestWallpapers} show={16}/>
+                <Mediagrid mediaList={latestWallpapers} show={16}/>
             </div>
         );
     }
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+    return {
+        topWallpapers: state.wallpapers.top,
+        latestWallpapers: state.wallpapers.latest
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getTopWallpapers: () => dispatch(getTopWallpapers()),
+        getLatestWallpapers: () => dispatch(getLatestWallpapers())
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import wallpaperReducer from './wallpaperReducer';
 
 const rootReducer = combineReducers({
-    wallpaper: wallpaperReducer
+    wallpapers: wallpaperReducer
 });
 
 
