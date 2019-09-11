@@ -1,12 +1,17 @@
+//Lib imports
 import React, { Component } from 'react';
-import App from './App';
 import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 
-// const store = createStore();
+//Custom imports
+import App from './App';
+import rootReducer from './redux/reducers/rootReducer';
+
+const store = createStore(rootReducer);
 
 class Main extends Component {
     render() {
-        return <App/>;
+        return (<div><Provider store={store}><App/></Provider></div>);
     }
 }
 
