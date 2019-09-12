@@ -1,7 +1,18 @@
+//Lib imports
 import React, { Component } from  'react';
+import { connect } from 'react-redux';
 import M from "materialize-css";
 
+//Custom Imports
+import { createWallpaper } from '../redux/actions/wallpaperActions';
+
 class Upload extends Component {
+
+    state = {
+        title: '',
+        description: '',
+        url: ''
+    };
 
     componentDidMount() {
         M.updateTextFields();
@@ -14,10 +25,10 @@ class Upload extends Component {
         });
     };
 
-    handleSubmit(e) {
+    handleSubmit = (e) => {
         e.preventDefault();
-        console.log('KIMMY',e);
-    }
+        this.props.createWallpaper(this.state)
+    };
 
     render(){
         return (
@@ -67,4 +78,10 @@ class Upload extends Component {
     }
 }
 
-export default Upload;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        createWallpaper: (wallpaper) => dispatch(createWallpaper(wallpaper))
+    }
+};
+
+export default connect(null, mapDispatchToProps)(Upload);

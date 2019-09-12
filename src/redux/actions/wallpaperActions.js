@@ -33,3 +33,20 @@ export const getWallpaperInfo = (id) => {
             .catch(err => console.log(err));
     }
 };
+
+export const createWallpaper = ( wallpaper ) => {
+    return (dispatch, getstate, {getFirebase, getFirestore}) => {
+        const firestore = getFirestore();
+        firestore.collection('wallpapers').add({
+            ...wallpaper,
+            userFirstName: 'Kim',
+            userLastNAme: 'Kumar',
+            userId: 123456,
+            createdAt: new Date()
+        }).then(() => {
+            dispatch({type: ActionTypes.CREATE_WALLPAPER, payload: wallpaper});
+        }).catch((err) => {
+            dispatch({type: ActionTypes.CREATE_WALLPAPER_FAILED, payload: err});
+        });
+    };
+};

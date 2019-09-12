@@ -24,6 +24,12 @@ const wallpaperReducer = (state = initState, action) => {
                 ...state,
                 wallpaper: action.payload
             };
+        case ActionTypes.CREATE_WALLPAPER:
+            console.log('SUCCESS', action.payload);
+            return state;
+        case ActionTypes.CREATE_WALLPAPER_FAILED:
+            console.log('Error', action.payload);
+            return state;
         default:
             return state;
     }
