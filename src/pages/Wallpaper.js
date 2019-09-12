@@ -6,6 +6,7 @@ import Axios from 'axios';
 //Custom Imports
 import Comments from '../components/Comments'
 import { getWallpaperInfo } from '../redux/actions/wallpaperActions';
+import { getComments } from '../redux/actions/commentsActions';
 
 class Wallpaper extends Component {
 
@@ -17,18 +18,11 @@ class Wallpaper extends Component {
 
     componentDidMount() {
         this.props.getWallpaperInfo(this.props.match.params.id);
-        Axios.get(`${process.env.REACT_APP_HOST_NAME}/api/v1/comments?id=${this.props.match.params.id}`)
-            .then(res => {
-                this.setState({
-                    comments: res.data
-                });
-            })
-            .catch(err => console.log(err))
+        this.props.getComments(this.props.match.params.id);
     }
 
     render() {
-        const { wallpaper } = this.props;
-        const comments = this.state.comments;
+        const { wallpaper, comments } = this.props;
 
         return wallpaper ? (
                     <div className="container">
@@ -53,13 +47,15 @@ class Wallpaper extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        wallpaper: state.wallpapers.wallpaper
+        wallpaper: state.wallpapers.wallpaper,
+        comments: state.comments.comments
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         getWallpaperInfo: (id) => dispatch(getWallpaperInfo(id)),
+        getComments: (id) => dispatch(getComments(id)),
     }
 };
 

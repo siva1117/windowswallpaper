@@ -1,8 +1,11 @@
 import { combineReducers } from "redux";
+
 import wallpaperReducer from './wallpaperReducer';
+import commentsReducer from './commentsReducer';
 
 const rootReducer = combineReducers({
-    wallpapers: wallpaperReducer
+    wallpapers: wallpaperReducer,
+    comments: commentsReducer
 });
 
 
