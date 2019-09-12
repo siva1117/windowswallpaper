@@ -10,7 +10,7 @@ import { reactReduxFirebase, getFirebase } from "react-redux-firebase";
 //Custom imports
 import App from './App';
 import rootReducer from './redux/reducers/rootReducer';
-import fbConfig from './config/fbconfig';
+import fbConfig from './config/fbConfig';
 
 
 let middleware = [thunk.withExtraArgument({getFirebase, getFirestore})];
