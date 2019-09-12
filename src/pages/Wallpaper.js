@@ -1,7 +1,6 @@
 //Lib imports
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Axios from 'axios';
 
 //Custom Imports
 import Comments from '../components/Comments'
@@ -9,12 +8,6 @@ import { getWallpaperInfo } from '../redux/actions/wallpaperActions';
 import { getComments } from '../redux/actions/commentsActions';
 
 class Wallpaper extends Component {
-
-    state = {
-        id: null,
-        wallpaper : {},
-        comments: []
-    };
 
     componentDidMount() {
         this.props.getWallpaperInfo(this.props.match.params.id);
