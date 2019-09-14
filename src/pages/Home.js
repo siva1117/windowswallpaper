@@ -1,6 +1,8 @@
 //Lib
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from 'redux';
 
 //Custom Imports
 import Slider from '../components/Slider';
@@ -30,6 +32,7 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log('KIMMY', state);
     return {
         topWallpapers: state.wallpapers.top,
         latestWallpapers: state.wallpapers.latest
@@ -43,4 +46,11 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    firestoreConnect([
+        {
+            collection: 'wallpapers'
+        }
+    ])
+)(Home);
