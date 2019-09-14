@@ -11,7 +11,8 @@ class Upload extends Component {
     state = {
         title: '',
         description: '',
-        url: ''
+        url: '',
+        thumbnail: ''
     };
 
     componentDidMount() {
