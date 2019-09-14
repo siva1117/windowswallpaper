@@ -44,7 +44,7 @@ class Upload extends Component {
                                     type="text"
                                     data-length="10"
                                     onChange={this.handleChange}/>
-                                    <label htmlFor="input_text">Title</label>
+                                    <label htmlFor="title">Title</label>
                             </div>
                         </div>
                         <div className="row">
@@ -54,7 +54,7 @@ class Upload extends Component {
                                     className="materialize-textarea"
                                     data-length="120"
                                     onChange={this.handleChange}/>
-                                <label htmlFor="textarea2">Description</label>
+                                <label htmlFor="description">Description</label>
                             </div>
                         </div>
                         <div className="row">
@@ -64,7 +64,17 @@ class Upload extends Component {
                                     type="text"
                                     data-length="10"
                                     onChange={this.handleChange}/>
-                                <label htmlFor="input_text">Url</label>
+                                <label htmlFor="url">Image Url</label>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="input-field col s12">
+                                <input
+                                    name="thumbnail"
+                                    type="text"
+                                    data-length="10"
+                                    onChange={this.handleChange}/>
+                                <label htmlFor="thumbnail">Thumbnail Url</label>
                             </div>
                         </div>
                         <div className="row">
