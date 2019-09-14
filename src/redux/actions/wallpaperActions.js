@@ -42,6 +42,7 @@ export const createWallpaper = ( wallpaper ) => {
             userFirstName: 'Kim',
             userLastNAme: 'Kumar',
             userId: 123456,
+            views: 0,
             createdAt: new Date()
         }).then(() => {
             dispatch({type: ActionTypes.CREATE_WALLPAPER, payload: wallpaper});
