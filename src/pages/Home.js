@@ -32,7 +32,6 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log('KIMMY', state);
     return {
         topWallpapers: state.wallpapers.top,
         latestWallpapers: state.wallpapers.latest
