@@ -32,6 +32,8 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => {
+    //@todo realtime data from wallpapers collection will now be available in state.firestore.ordered.wallpapers
+    console.log('Kimmy', state.firestore.ordered.wallpapers);
     return {
         topWallpapers: state.wallpapers.top,
         latestWallpapers: state.wallpapers.latest

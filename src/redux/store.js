@@ -7,7 +7,14 @@ import {getFirebase, reactReduxFirebase } from "react-redux-firebase";
 
 //Custom Lib
 import rootReducer from "./reducers/rootReducer";
-import fbConfig from "../config/fbConfig";
+import firebase from "../config/fbConfig";
+
+// react-redux-firebase config
+const rrfConfig = {
+    userProfile: 'users',
+    useFirestoreForProfile: true // Firestore for Profile instead of Realtime DB
+};
+
 
 let middleware = [thunk.withExtraArgument({getFirebase, getFirestore})];
 //@todo uncomment below before final deployment
@@ -16,12 +23,12 @@ middleware = [...middleware, logger];
 // }
 
 
-const store = createStore(rootReducer,
-    compose(
-        applyMiddleware(...middleware),
-        reduxFirestore(fbConfig),
-        reactReduxFirebase(fbConfig)
-    ));
+// Add reactReduxFirebase enhancer when making store creator
+const createStoreWithFirebase = compose(
+    applyMiddleware(...middleware),
+    reactReduxFirebase(firebase, rrfConfig), // firebase instance as first argument
+    reduxFirestore(firebase) // <- needed if using firestore
+)(createStore);
 
-
-export default store;
+// Create store with reducers and initial state
+export default createStoreWithFirebase(rootReducer);

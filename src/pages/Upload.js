@@ -8,6 +8,7 @@ import { createWallpaper } from '../redux/actions/wallpaperActions';
 
 class Upload extends Component {
 
+    //Todo add field Validations and File Upload to Firebase Storage
     state = {
         title: '',
         description: '',
@@ -28,13 +29,13 @@ class Upload extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.createWallpaper(this.state)
+        this.props.createWallpaper(this.state);
     };
 
     render(){
         return (
             <div className="container">
-                <h2>Upload Wallpaper</h2>
+                <h2>Add Wallpaper</h2>
 
                 <div className="row">
                     <form className="col s12" onSubmit={this.handleSubmit}>
@@ -44,7 +45,8 @@ class Upload extends Component {
                                     name="title"
                                     type="text"
                                     data-length="10"
-                                    onChange={this.handleChange}/>
+                                    onChange={this.handleChange}
+                                required/>
                                     <label htmlFor="title">Title</label>
                             </div>
                         </div>
@@ -54,7 +56,8 @@ class Upload extends Component {
                                     name="description"
                                     className="materialize-textarea"
                                     data-length="120"
-                                    onChange={this.handleChange}/>
+                                    onChange={this.handleChange}
+                                    required/>
                                 <label htmlFor="description">Description</label>
                             </div>
                         </div>
@@ -64,7 +67,8 @@ class Upload extends Component {
                                     name="url"
                                     type="text"
                                     data-length="10"
-                                    onChange={this.handleChange}/>
+                                    onChange={this.handleChange}
+                                    required/>
                                 <label htmlFor="url">Image Url</label>
                             </div>
                         </div>
@@ -74,7 +78,8 @@ class Upload extends Component {
                                     name="thumbnail"
                                     type="text"
                                     data-length="10"
-                                    onChange={this.handleChange}/>
+                                    onChange={this.handleChange}
+                                    required    />
                                 <label htmlFor="thumbnail">Thumbnail Url</label>
                             </div>
                         </div>
